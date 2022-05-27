@@ -129,7 +129,7 @@
     <ul class='item-lists'>
       <% @items.each do |i| %>
         <li class='list'>
-          <%= link_to '#' do %>
+          <%= link_to item_path(i.id) do %>
           <div class='item-img-content'>
             <%= image_tag i.image, class: "item-img" %>
 
@@ -147,7 +147,7 @@
               <%= i.item_name %>
             </h3>
             <div class='item-price'>
-              <span><%= i.price %>円<br><%= i.shipping_fee.name %></span>
+              <span><%= i.price.to_s(:currency, locale: :jp) %><br><%= i.shipping_fee.name %></span>
               <div class='star-btn'>
                 <%= image_tag "star.png", class:"star-icon" %>
                 <span class='star-count'>0</span>
