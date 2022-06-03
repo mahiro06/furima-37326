@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order(id: 'DESC')
+    
   end
 
   def new
@@ -32,6 +33,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @rop = Rop.find_by(item_id: params[:id])
   end
 
 
@@ -53,5 +55,6 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless current_user.id == @item.user_id
+    redirect_to action: :index unless Rop.find_by(item_id: params[:item_id])
   end
 end

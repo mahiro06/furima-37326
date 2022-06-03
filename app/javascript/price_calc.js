@@ -14,4 +14,4 @@ function SellPriceCalc () {
 };
 
 
-window.addEventListener('load', SellPriceCalc);
+window.addEventListener("load", SellPriceCalc);
