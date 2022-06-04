@@ -8,6 +8,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :rop
 
   validates :item_name, :item_info, :category_id, :quality_id, :prefecture_id, :shipping_date_id, :shipping_fee_id, :price,
             :image, presence: true
