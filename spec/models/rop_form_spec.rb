@@ -28,12 +28,12 @@ RSpec.describe RopForm, type: :model do
       it 'postal_codeに-が含まれていないため保存されないこと' do
         @rop_form.postal_code = '11111111'
         @rop_form.valid?
-        expect(@rop_form.errors.full_messages).to include("Postal code を正しく入力してください　例）123-4567")
+        expect(@rop_form.errors.full_messages).to include('Postal code を正しく入力してください　例）123-4567')
       end
       it 'postal_codeの桁数が正しくないため保存されないこと' do
         @rop_form.postal_code = '0000-0000'
         @rop_form.valid?
-        expect(@rop_form.errors.full_messages).to include("Postal code を正しく入力してください　例）123-4567")
+        expect(@rop_form.errors.full_messages).to include('Postal code を正しく入力してください　例）123-4567')
       end
       it 'prefecture_idが空だと保存できないこと' do
         @rop_form.prefecture_id = '1'
@@ -58,17 +58,17 @@ RSpec.describe RopForm, type: :model do
       it 'tellが１０桁未満のため保存できないこと' do
         @rop_form.tell = '111111111'
         @rop_form.valid?
-        expect(@rop_form.errors.full_messages).to include("Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789")
+        expect(@rop_form.errors.full_messages).to include('Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789')
       end
       it 'tellが１２桁以上のため保存できないこと' do
         @rop_form.tell = '111111111111'
         @rop_form.valid?
-        expect(@rop_form.errors.full_messages).to include("Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789")
+        expect(@rop_form.errors.full_messages).to include('Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789')
       end
       it 'tellに半角数字以外が含まれるため保存できない' do
         @rop_form.tell = 'a111111111'
         @rop_form.valid?
-        expect(@rop_form.errors.full_messages).to include("Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789")
+        expect(@rop_form.errors.full_messages).to include('Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789')
       end
       it 'userが紐付いていないと保存できないこと' do
         @rop_form.user_id = nil

@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order(id: 'DESC')
-    
   end
 
   def new
@@ -35,7 +34,6 @@ class ItemsController < ApplicationController
   def show
     @rop = Rop.find_by(item_id: params[:id])
   end
-
 
   def destroy
     @item.destroy

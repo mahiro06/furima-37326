@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_many :rop
+  has_many :rops
 
   validates :nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birth, presence: true
   with_options allow_blank: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
