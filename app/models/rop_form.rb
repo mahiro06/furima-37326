@@ -1,6 +1,6 @@
 class RopForm
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :building_address, :building, :tell, :rop_id, :user_id, :item_id, :token
+  attr_accessor :postal_code, :prefecture_id, :city, :building_address, :building, :tell, :user_id, :item_id, :token
 
 
   validates :postal_code, :prefecture_id, :city, :building_address, :tell, :user_id, :item_id, :token, presence: true

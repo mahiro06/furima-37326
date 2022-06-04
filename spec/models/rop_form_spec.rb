@@ -56,12 +56,17 @@ RSpec.describe RopForm, type: :model do
         expect(@rop_form.errors.full_messages).to include("Tell can't be blank")
       end
       it 'tellが１０桁未満のため保存できないこと' do
-        @rop_form.tell = '1111'
+        @rop_form.tell = '111111111'
         @rop_form.valid?
         expect(@rop_form.errors.full_messages).to include("Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789")
       end
       it 'tellが１２桁以上のため保存できないこと' do
-        @rop_form.tell = '11111111111111'
+        @rop_form.tell = '111111111111'
+        @rop_form.valid?
+        expect(@rop_form.errors.full_messages).to include("Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789")
+      end
+      it 'tellに半角数字以外が含まれるため保存できない' do
+        @rop_form.tell = 'a111111111'
         @rop_form.valid?
         expect(@rop_form.errors.full_messages).to include("Tell を半角数字で入力してください（１０〜１１桁）　例）0123456789")
       end
