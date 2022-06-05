@@ -25,8 +25,13 @@ class RopsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id == @item.user_id
-    redirect_to root_path unless Rop.find_by(item_id: params[:item_id]).nil?
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    else
+      unless Rop.find_by(item_id: params[:item_id]).nil? 
+        redirect_to root_path
+      end
+    end 
   end
 
   def order_params
