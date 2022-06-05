@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
     if current_user.id =! @item.user_id
       redirect_to action: :index
     else
-      unless Rop.find_by(item_id: params[:item_id]).nil?
+      unless Rop.find_by(item_id: @item.id).nil?
         redirect_to action: :index
       end
     end 
