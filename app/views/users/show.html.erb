@@ -1,0 +1,96 @@
+<%= render "shared/header" %>
+<div class='main'>
+<div class='item-contents'>
+  <%# 出品商品一覧 %>
+    <h2 class='title'><%= @user.nickname %>さんのピックアップカテゴリー</h2>
+    <div class="subtitle" >
+      新規投稿商品
+    </div>
+    <ul class='item-lists'>
+      <% @items.each do |i| %>
+        <li class='list'>
+          <%= link_to item_path(i.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag i.image, class: "item-img" %>
+
+            <% unless Rop.find_by(item_id: i.id).nil? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <% end %>
+
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= i.item_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= i.price.to_s(:currency, locale: :jp) %><br><%= i.shipping_fee.name %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if @items.count == 0 %>
+        <li class='list'>
+          <%= link_to '#' do %>
+            <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                商品を出品してね！
+              </h3>
+              <div class='item-price'>
+                <span>99999999円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+  <%# /出品商品一覧 %>
+
+  <%# 購入履歴 %>
+  <div class='item-contents'>
+    <% if user_signed_in? && current_user.id == params[:id].to_i %>
+      <h2 class='title'>購入履歴</h2>
+      <div class="subtitle" >
+        購入商品
+      </div>
+      <ul class='item-lists'>
+          <% @item.each do |i| %>
+            <li class='list'>
+              <%= link_to item_path(i.id) do %>
+              <div class='item-img-content'>
+                <%= image_tag i.image, class: "item-img" %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= i.item_name %>
+                </h3>
+                <div class='item-price'>
+                  <span><%= i.price.to_s(:currency, locale: :jp) %><br><%= i.shipping_fee.name %></span>
+                  <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                    <span class='star-count'>0</span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            </li>
+          <% end %>
+      </ul>
+    <%end%>
+  </div>
+</div>
+<%= render "shared/footer" %>
