@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :items do
     resources :rops, only: [:index, :create]
   end
+  resources :users, only: :show
 
 end
